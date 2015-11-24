@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Set root password
+passwd root
+
+
+# Change port
+sed -i -e 's/#Port 22/Port 60022/g' /etc/ssh/sshd_config
+
+# Permit root
+sed -i -e 's/#PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config
+
+
+# Start
+/etc/init.d/sshd stop
+/etc/init.d/sshd start
+/etc/init.d/sshd stop
